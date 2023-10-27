@@ -52,7 +52,7 @@ if (args.length > 0) {
 
   console.log("\nCopying basic template files.");
 
-  fs.cpSync("./template", root, { recursive: true });
+  fs.cpSync(path.join(__dirname, "../template"), root, { recursive: true });
   fs.readFile(root + "/public/index.html", "utf8", function (err, data) {
     if (err) {
       return console.log(err);
