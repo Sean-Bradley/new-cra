@@ -45,24 +45,39 @@ if (args.length > 0) {
     JSON.stringify(packageJson, null, 2) + os.EOL
   );
 
-  console.log("\nInstalling packages. This might take a couple of minutes.");
-  console.log(
-    "Installing \x1b[34mreact\u001b[0m, \x1b[34mreact-dom\u001b[0m, \x1b[34mr3f-pack\u001b[0m and \x1b[34mminimal template.\u001b[0m"
-  );
+  // console.log("\nInstalling packages. This might take a couple of minutes.");
+  // console.log(
+  //   "Installing \x1b[36mreact\u001b[0m, \x1b[36mreact-dom\u001b[0m, \x1b[36mr3f-pack\u001b[0m and \x1b[36mminimal template.\u001b[0m"
+  // );
+
+  console.log("\nCopying basic template files.");
+
+  fs.cpSync("./template", root, { recursive: true });
+  fs.readFile(root + "/public/index.html", "utf8", function (err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    var result = data.replace(/\{title\}/g, appName);
+
+    fs.writeFile(root + "/public/index.html", result, "utf8", function (err) {
+      if (err) return console.log(err);
+    });
+  });
 
   console.log(
-    `\nSuccess! Created \x1b[34m${appName}\u001b[0m in folder \x1b[34m${root}\u001b[0m`
+    `\nSuccess! Created \x1b[36m${appName}\u001b[0m in folder \x1b[36m${root}\u001b[0m`
   );
-  console.log("Inside that directory, you can run several commands:");
+  console.log("\nInside that directory, you can run several commands:");
   console.log(
-    "\n  \x1b[34mnpm start\n    \u001b[0mStarts the development server."
+    "\n  \x1b[36mnpm start\n    \u001b[0mStarts the development server."
   );
   console.log(
-    "\n  \x1b[34mnpm run build\n    \u001b[0mBundles the app into static files for production."
+    "\n  \x1b[36mnpm run build\n    \u001b[0mBundles the app into static files for production."
   );
   console.log("\nWe suggest that you begin by typing:\n");
-  console.log(`  \x1b[34mcd \u001b[0m${appName}`);
-  console.log("  \x1b[34mnpm start\x1b[0m");
+  console.log(`  \x1b[36mcd \u001b[0m${appName}`);
+  console.log("  \x1b[36mnpm install\x1b[0m");
+  console.log("  \x1b[36mnpm start\x1b[0m");
   console.log("\nHappy hacking!");
 } else {
   usage();
