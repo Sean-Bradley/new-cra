@@ -19,7 +19,7 @@ You can use a different name other than `my-app` if you wish. Just use that othe
 
 ## Updating `new-cra`
 
-`new-cra` is occasionally updated, to ensure you have the latest version of `new-cra` run,
+`new-cra` is occasionally updated, to ensure you are using the latest version of `new-cra`, then run,
 
 ```bash
 npx new-cra@latest my-app
