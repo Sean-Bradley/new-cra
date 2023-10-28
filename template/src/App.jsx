@@ -9,11 +9,11 @@ function Item({ name, completed }) {
 export default function App() {
   return (
     <section>
-      <h1>New-CRA Sample App</h1>
+      <h1>{title}</h1>
       <ul>
         <Item completed={true} name="Prepared Basic React template" />
         <Item completed={true} name="Installed Dependencies" />
-        <Item completed={true} name="App started" />
+        <Item completed={true} name="App Started in Browser" />
       </ul>
     </section>
   );
