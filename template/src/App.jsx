@@ -11,9 +11,10 @@ export default function App() {
     <section>
       <h1>{title}</h1>
       <ul>
-        <Item completed={true} name="Prepared Basic React template" />
-        <Item completed={true} name="Installed Dependencies" />
-        <Item completed={true} name="App Started in Browser" />
+        <Item completed name="Prepared Basic React template" />
+        <Item completed name="Installed Dependencies" />
+        <Item completed name="App Started in Browser" />
+        <Item name="You are now ready to start developing" />
       </ul>
     </section>
   );

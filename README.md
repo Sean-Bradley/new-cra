@@ -8,11 +8,10 @@ If you want to create a new app named `my-app` then use the command below.
 npx new-cra my-app
 ```
 
-After the command has finished
+After the installation has finished
 
 ```bash
 cd my-app
-npm install
 npm start
 ```
 
@@ -20,7 +19,7 @@ You can use a different name other than `my-app` if you wish. Just use that othe
 
 ## Updating `new-cra`
 
-To ensure you have the latest version of `new-cra` run,
+`new-cra` is occasionally updated, to ensure you have the latest version of `new-cra` run,
 
 ```bash
 npx new-cra@latest my-app

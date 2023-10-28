@@ -17,3 +17,7 @@ h1 {
 ul {
   padding-inline-start: 20px;
 }
+
+li {
+  line-height: 30px;
+}
