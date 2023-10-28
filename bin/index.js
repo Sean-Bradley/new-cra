@@ -2,6 +2,7 @@
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
+const shell = require("shelljs");
 
 function usage() {
   console.log("\u001b[0mUsage:\n\n\u001b[32mnpx new-cra my-app\u001b[0m\n");
@@ -32,7 +33,7 @@ if (args.length > 0) {
     devDependencies: {
       react: "18.2.0",
       "react-dom": "18.2.0",
-      "r3f-pack": "2.2.3",
+      "r3f-pack": "^2.2.3",
     },
     scripts: {
       start: "r3f-pack start",
@@ -45,10 +46,13 @@ if (args.length > 0) {
     JSON.stringify(packageJson, null, 2) + os.EOL
   );
 
-  // console.log("\nInstalling packages. This might take a couple of minutes.");
-  // console.log(
-  //   "Installing \x1b[36mreact\u001b[0m, \x1b[36mreact-dom\u001b[0m, \x1b[36mr3f-pack\u001b[0m and \x1b[36mminimal template.\u001b[0m"
-  // );
+  console.log("\nInstalling packages. This might take a couple of minutes.");
+  console.log(
+    "Installing \x1b[36mreact\u001b[0m, \x1b[36mreact-dom\u001b[0m, \x1b[36mr3f-pack\u001b[0m and \x1b[36mminimal template.\u001b[0m"
+  );
+
+  shell.cd(root);
+  shell.exec("npm install");
 
   console.log("\nCopying basic template files.");
 
