@@ -24,3 +24,11 @@ You can use a different name other than `my-app` if you wish. Just use that othe
 ```bash
 npx new-cra@latest my-app
 ```
+
+## Typescript
+
+You can create a TypeScript React project by adding the `-ts` flag.
+
+```bash
+npx new-cra@latest my-app -ts
+```

@@ -9,6 +9,7 @@ function usage() {
 }
 
 const args = process.argv.slice(2);
+let usingTypeScript = false;
 
 if (args.length > 0) {
   const root = path.resolve(args[0]);
@@ -16,28 +17,51 @@ if (args.length > 0) {
 
   console.log(`\nCreating a new React app in \x1b[32m${root}\x1b[0m`);
 
-  //if (args[1] === "-ts") {
-  //  console.log("with TypeScript");
-  //}
+  if (args[1] === "-ts") {
+    usingTypeScript = true;
+  }
 
   if (!fs.existsSync(appName)) {
     fs.mkdirSync(appName);
   }
 
-  const packageJson = {
-    name: appName,
-    version: "1.0.0",
-    main: "src/index.jsx",
-    devDependencies: {
-      react: "18.2.0",
-      "react-dom": "18.2.0",
-      "r3f-pack": "^2.2.3",
-    },
-    scripts: {
-      start: "r3f-pack start",
-      build: "r3f-pack build",
-    },
-  };
+  let packageJson = "";
+
+  if (usingTypeScript) {
+    packageJson = {
+      name: appName,
+      version: "1.0.0",
+      main: "src/index.jsx",
+      devDependencies: {
+        "@types/node": "^20.3.1",
+        "@types/react": "^18.2.12",
+        "@types/react-dom": "^18.2.5",
+        react: "18.2.0",
+        "react-dom": "18.2.0",
+        "r3f-pack": "^2.2.3",
+        typescript: "^5.1.3",
+      },
+      scripts: {
+        start: "r3f-pack start",
+        build: "r3f-pack build",
+      },
+    };
+  } else {
+    packageJson = {
+      name: appName,
+      version: "1.0.0",
+      main: "src/index.jsx",
+      devDependencies: {
+        react: "18.2.0",
+        "react-dom": "18.2.0",
+        "r3f-pack": "^2.2.3",
+      },
+      scripts: {
+        start: "r3f-pack start",
+        build: "r3f-pack build",
+      },
+    };
+  }
 
   fs.writeFileSync(
     path.join(root, "package.json"),
@@ -45,35 +69,69 @@ if (args.length > 0) {
   );
 
   console.log("\nInstalling packages. This might take a couple of minutes.");
-  console.log(
-    "Installing \x1b[36mreact\u001b[0m, \x1b[36mreact-dom\u001b[0m, \x1b[36mr3f-pack\u001b[0m and \x1b[36mminimal template.\u001b[0m"
-  );
+  if (usingTypeScript) {
+    console.log(
+      "Installing \x1b[36mreact\u001b[0m, \x1b[36mreact-dom\u001b[0m, \x1b[36mr3f-pack\u001b[0m, \x1b[36mTypeScript\u001b[0m and \x1b[36mminimal template.\u001b[0m"
+    );
+  } else {
+    console.log(
+      "Installing \x1b[36mreact\u001b[0m, \x1b[36mreact-dom\u001b[0m, \x1b[36mr3f-pack\u001b[0m and \x1b[36mminimal template.\u001b[0m"
+    );
+  }
 
+  console.log()
+  
   execSync(`cd ${root} && npm install`, { stdio: "inherit" });
 
   console.log("\nCopying basic template files.");
 
-  fs.cpSync(path.join(__dirname, "../template"), root, { recursive: true });
-  fs.readFile(root + "/public/index.html", "utf8", function (err, data) {
-    if (err) {
-      return console.log(err);
-    }
-    var result = data.replace(/\{title\}/g, appName);
-
-    fs.writeFile(root + "/public/index.html", result, "utf8", function (err) {
-      if (err) return console.log(err);
+  if (usingTypeScript) {
+    fs.cpSync(path.join(__dirname, "../template-ts"), root, {
+      recursive: true,
     });
-  });
-  fs.readFile(root + "/src/App.jsx", "utf8", function (err, data) {
-    if (err) {
-      return console.log(err);
-    }
-    var result = data.replace(/\{title\}/g, appName);
+    fs.readFile(root + "/public/index.html", "utf8", function (err, data) {
+      if (err) {
+        return console.log(err);
+      }
+      var result = data.replace(/\{title\}/g, appName);
 
-    fs.writeFile(root + "/src/App.jsx", result, "utf8", function (err) {
-      if (err) return console.log(err);
+      fs.writeFile(root + "/public/index.html", result, "utf8", function (err) {
+        if (err) return console.log(err);
+      });
     });
-  });
+    fs.readFile(root + "/src/App.tsx", "utf8", function (err, data) {
+      if (err) {
+        return console.log(err);
+      }
+      var result = data.replace(/\{title\}/g, appName);
+
+      fs.writeFile(root + "/src/App.tsx", result, "utf8", function (err) {
+        if (err) return console.log(err);
+      });
+    });
+  } else {
+    fs.cpSync(path.join(__dirname, "../template"), root, { recursive: true });
+    fs.readFile(root + "/public/index.html", "utf8", function (err, data) {
+      if (err) {
+        return console.log(err);
+      }
+      var result = data.replace(/\{title\}/g, appName);
+
+      fs.writeFile(root + "/public/index.html", result, "utf8", function (err) {
+        if (err) return console.log(err);
+      });
+    });
+    fs.readFile(root + "/src/App.jsx", "utf8", function (err, data) {
+      if (err) {
+        return console.log(err);
+      }
+      var result = data.replace(/\{title\}/g, appName);
+
+      fs.writeFile(root + "/src/App.jsx", result, "utf8", function (err) {
+        if (err) return console.log(err);
+      });
+    });
+  }
 
   console.log(
     `\nSuccess! Created \x1b[36m${appName}\u001b[0m in folder \x1b[36m${root}\u001b[0m`
