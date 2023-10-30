@@ -15,6 +15,8 @@ cd my-app
 npm start
 ```
 
+Visit http://127.0.0.1:3000
+
 You can use a different name other than `my-app` if you wish. Just use that other name in place of `my-app` in the above commands.
 
 E.g.,
