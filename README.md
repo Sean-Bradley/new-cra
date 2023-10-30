@@ -29,7 +29,13 @@ npm start
 
 ## Updating `new-cra`
 
-`new-cra` is occasionally updated, to ensure you are using the latest version of `new-cra`, then run,
+`new-cra` is occasionally updated. So, to ensure that you are using the latest version of `new-cra`, run,
+
+```bash
+npx new-cra@latest
+```
+
+You could also update, and create at the same time, just to save time.
 
 ```bash
 npx new-cra@latest my-app
@@ -37,7 +43,7 @@ npx new-cra@latest my-app
 
 ## Typescript
 
-You can create a TypeScript React project by adding the `-ts` flag.
+You can also create a TypeScript React project by adding the `-ts` flag.
 
 ```bash
 npx new-cra@latest my-app -ts
