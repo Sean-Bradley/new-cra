@@ -17,6 +17,14 @@ npm start
 
 You can use a different name other than `my-app` if you wish. Just use that other name in place of `my-app` in the above commands.
 
+E.g.,
+
+```bash
+npx new-cra super-amazing-react-website
+cd super-amazing-react-website
+npm start
+```
+
 ## Updating `new-cra`
 
 `new-cra` is occasionally updated, to ensure you are using the latest version of `new-cra`, then run,
