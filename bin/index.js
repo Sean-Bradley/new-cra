@@ -54,7 +54,7 @@ if (args.length > 0) {
       devDependencies: {
         react: "18.2.0",
         "react-dom": "18.2.0",
-        "r3f-pack": "^2.2.3",
+        "r3f-pack": "latest",
       },
       scripts: {
         start: "r3f-pack start",
@@ -79,8 +79,8 @@ if (args.length > 0) {
     );
   }
 
-  console.log()
-  
+  console.log();
+
   execSync(`cd ${root} && npm install`, { stdio: "inherit" });
 
   console.log("\nCopying basic template files.");
