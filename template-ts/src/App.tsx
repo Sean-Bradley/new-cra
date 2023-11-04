@@ -14,6 +14,7 @@ function Item({ name, completed }: iItem) {
 export default function App() {
   return (
     <section>
+      <img src="r3f-pack-logo.png" />
       <h1>{title}</h1>
       <ul>
         <Item completed name="Prepared Basic React template" />
