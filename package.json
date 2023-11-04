@@ -1,6 +1,6 @@
 {
   "name": "new-cra",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "New create-react-app",
   "main": "index.js",
   "bin": {
