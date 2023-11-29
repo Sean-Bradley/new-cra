@@ -49,6 +49,18 @@ You can also create a TypeScript React project by adding the `-ts` flag.
 npx new-cra@latest my-app -ts
 ```
 
+## Trouble shooting
+
+### Error : `ENOENT: no such file or directory, lstat`
+
+When running `npx` commands, you may get an error stating that it cannot find `lstat`.
+
+Open a command/bash/powershell prompt and run
+
+```bash
+npm install -g npm
+```
+
 ## About
 
 New-CRA (New Create-React-APP) will build a basic React template/starter/boilerplate for you.
